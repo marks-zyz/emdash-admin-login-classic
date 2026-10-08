@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or idea
+    url: https://github.com/marks-zyz/emdash-admin-login-classic/discussions
+    about: Ask how something works or float an idea before it becomes an issue
+  - name: Report a vulnerability
+    url: https://github.com/marks-zyz/emdash-admin-login-classic/security/advisories/new
+    about: Private report, please do not open a public issue

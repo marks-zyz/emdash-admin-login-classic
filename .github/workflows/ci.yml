@@ -1,0 +1,23 @@
+name: ci
+
+# Typecheck and unit tests on every push and pull request. The end-to-end test needs a running
+# EmDash site and a browser, so it runs on a maintainer's machine before a release.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun run test

@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a change that fits a classic email and password admin login
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This package is deliberately small: the classic WordPress-style login for the EmDash **admin**. Public sign-up, social login, 2FA and organizations belong in a full auth plugin such as emdash-better-auth, and requests for them will be closed with a pointer there. See CONTRIBUTING.md.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation first, then the change you have in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This is about signing people in to the admin with an email and a password
+          required: true
+        - label: I would be willing to help build or test it

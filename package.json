@@ -1,0 +1,73 @@
+{
+  "name": "emdash-admin-login-classic",
+  "version": "0.5.0",
+  "description": "Classic email and password sign-in for the EmDash admin, the way WordPress does it. Passkeys and the email link keep working next to it. No public sign-up.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./admin": "./src/admin.tsx",
+    "./plugin": "./src/plugin.ts",
+    "./plugin-admin": "./src/plugin-admin.tsx",
+    "./routes/*": "./src/routes/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "emdash",
+    "emdash-cms",
+    "emdash-plugin",
+    "emdash-auth",
+    "auth",
+    "authentication",
+    "login",
+    "password",
+    "wordpress",
+    "admin",
+    "astro",
+    "cloudflare-workers"
+  ],
+  "peerDependencies": {
+    "@cloudflare/kumo": ">=2.0.0",
+    "@emdash-cms/auth": ">=1.1.0 <1.2.0",
+    "astro": "^7.0.0",
+    "emdash": ">=1.1.0 <1.2.0",
+    "kysely": ">=0.27.0",
+    "react": ">=19.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/kumo": "2.6.0",
+    "@cloudflare/workers-types": "5.20261005.1",
+    "@emdash-cms/auth": "1.1.0",
+    "@types/bun": "^1.3.0",
+    "@types/react": "^19.2.0",
+    "astro": "^7.3.1",
+    "emdash": "1.1.0",
+    "kysely": "0.29.5",
+    "react": "19.2.8",
+    "typescript": "^5.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marks-zyz/emdash-admin-login-classic.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/marks-zyz/emdash-admin-login-classic#readme",
+  "bugs": {
+    "url": "https://github.com/marks-zyz/emdash-admin-login-classic/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
