@@ -28,6 +28,7 @@ async function readEnv(): Promise<Record<string, unknown>> {
 		};
 		if (mod?.env) return mod.env;
 	} catch {
+		// Not on Workers: fall back to process.env.
 	}
 	const proc = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process;
 	return (proc?.env as Record<string, unknown> | undefined) ?? {};
@@ -50,6 +51,7 @@ export async function defer(task: Promise<unknown>, label: string): Promise<void
 			return;
 		}
 	} catch {
+		// Not on Workers: the promise just runs.
 	}
 	void guarded;
 }
@@ -111,6 +113,7 @@ export async function siteOrigin(emdash: EmdashLocals): Promise<string | null> {
 			const origin = new URL(value).origin;
 			if (origin.startsWith("https://") || origin.startsWith("http://localhost")) return origin;
 		} catch {
+			// Not a URL: fall through.
 		}
 	}
 	return null;
