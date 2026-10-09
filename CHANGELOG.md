@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+- Accepts EmDash 1.2.0: the peer ranges of `emdash` and `@emdash-cms/auth` are now `>=1.1.0 <1.3.0`. No code change. Unit tests (32) and the type check pass against `emdash` and `@emdash-cms/auth` 1.2.0. The end-to-end flows were last run on 1.1.0; run them on a 1.2.0 site before relying on a flow that sends email. The 1.2.0 issue where the first-user passkey registration does not open a session (emdash-cms/emdash#3998, fixed in #4000) is in the setup wizard and does not touch this package.
+
 ## 0.5.0
 
 First public release. The package was built privately as `emdash-auth-password` (0.1.0 to 0.4.1, never published to npm) and is now **EmDash Admin Login Classic**, `emdash-admin-login-classic`.
