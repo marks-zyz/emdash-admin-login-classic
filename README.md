@@ -110,6 +110,7 @@ We would rather this stayed small and, one day, unnecessary. Most of what the pa
 | --- | --- | --- |
 | 0.5.0 | `>=1.1.0 <1.2.0` | Astro 7, Cloudflare Workers, Chromium and WebKit |
 | 0.5.1 | `>=1.1.0 <1.3.0` | Astro 7, Cloudflare Workers; end-to-end on 1.1.0 (Chromium and WebKit), unit tests and type check on 1.2.0 |
+| 0.5.2 | `>=1.1.0 <1.4.0` | Astro 7, Cloudflare Workers; end-to-end on 1.3.0 (Chromium and WebKit, every flow but forgot-password, which needs an email provider), unit tests and type check on 1.3.0 |
 
 ## Testing
 

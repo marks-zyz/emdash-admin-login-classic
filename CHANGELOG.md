@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2
+
+- Accepts EmDash 1.3.0: the peer ranges of `emdash` and `@emdash-cms/auth` are now `>=1.1.0 <1.4.0`. No code change. Unit tests (32) and the type check pass against `emdash` and `@emdash-cms/auth` 1.3.0, and the end-to-end flows ran on a 1.3.0 site in Chromium and WebKit: sign-in from the reset link, choosing a password, signing in with it, invite and first password, used link refused, removing the password, team access and the CSRF check all pass. The forgot-password flow needs an email provider and the test site had none; it answers the same `EMAIL_NOT_CONFIGURED` on 1.1.0 and 1.3.0 there, so run it on a site that sends email before relying on it. EmDash 1.3.0 ships the fix for the first-user passkey registration that opened no session on Cloudflare (emdash-cms/emdash#3998, PR #4000); that screen is the setup wizard and does not touch this package.
+
 ## 0.5.1
 
 - Accepts EmDash 1.2.0: the peer ranges of `emdash` and `@emdash-cms/auth` are now `>=1.1.0 <1.3.0`. No code change. Unit tests (32) and the type check pass against `emdash` and `@emdash-cms/auth` 1.2.0. The end-to-end flows were last run on 1.1.0; run them on a 1.2.0 site before relying on a flow that sends email. The 1.2.0 issue where the first-user passkey registration does not open a session (emdash-cms/emdash#3998, fixed in #4000) is in the setup wizard and does not touch this package.
