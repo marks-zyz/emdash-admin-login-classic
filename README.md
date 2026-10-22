@@ -19,7 +19,7 @@ It is a small auth provider plus one native plugin:
 - **Sign in with email and password**, on EmDash's own login page. A button next to the passkey and email-link buttons opens the form.
 - **Forgot my password**, by email, through EmDash's own link-confirmation screen. The link works once, for 30 minutes, and goes out through the email provider the site already uses.
 - **My access**: a page inside the admin where any signed-in person sets, changes or removes their own password and sees whether they have a passkey, with a link to EmDash's Security page to create one. A person can have both. Removing the password needs at least one passkey.
-- **Team access**: a page for administrators to create someone's access with a generated temporary password (four words and a number) and copy a ready message to send. Nothing for the client to confirm and no passkey to register. On the first sign-in the person is invited, never forced, to choose their own password, and is offered a passkey once.
+- **Team access**: a page for administrators to create someone's access with a generated temporary password (four words and a number) and copy a ready message to send. Nothing for the client to confirm and no passkey to register. Every sign-in, the first included, lands on the dashboard; "My access" invites the person, never forces them, to choose their own password, and offers a passkey once.
 - **Invites accepted with a password**: EmDash's invite page gets an "Accept and use a password" button.
 
 It is **not** a competitor to full authentication plugins such as [emdash-better-auth](https://www.npmjs.com/package/emdash-better-auth), which is built for public apps and membership sites: sign-up pages, social login, passwordless, 2FA, organizations, billing. If your visitors need accounts, use one of those. This package has no public sign-up, no social login, no 2FA and no pages outside the admin, and it will stay that way. The goal is to be small enough to read in an afternoon and to trust with the keys of a client's site.
@@ -80,7 +80,7 @@ No migration and no table of its own:
 
 | Where | What |
 | --- | --- |
-| `_plugin_storage`, `auth:admin-login-classic` / `credentials` | one password hash per user id, plus `temporary` (created by an administrator, not replaced yet), `welcomed` (the first sign-in already happened) and `passkeyOfferDismissed` |
+| `_plugin_storage`, `auth:admin-login-classic` / `credentials` | one password hash per user id, plus `temporary` (created by an administrator, not replaced yet) and `passkeyOfferDismissed` (a `welcomed` key left by 0.5.x is ignored) |
 | `auth_tokens` (EmDash), type `recovery` | SHA-256 of each reset token, user id and expiry, consumed by EmDash's own magic-link verification |
 | `_emdash_rate_limits` | attempt counters, with the email and IP hashed into the key |
 

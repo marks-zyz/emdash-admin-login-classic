@@ -7,7 +7,7 @@ import type { Locale } from "./i18n.js";
 export const SLUG = "admin-login-classic";
 export const PROVIDER_ID = SLUG;
 export const PLUGIN_ID = SLUG;
-export const VERSION = "0.5.0";
+export const VERSION = "0.6.0";
 
 export const BASE_PATH = `/_emdash/api/auth/${SLUG}`;
 export const ADMIN_PATH = "/_emdash/admin";
@@ -53,10 +53,8 @@ export const STORAGE_CONFIG = {
 export interface Credential {
 	hash: string;
 	updatedAt: string;
-	/** Set by an administrator ("Team access"): sign-in lands on "My access" suggesting a new password. */
+	/** Set by an administrator ("Team access"): "My access" suggests a new password. */
 	temporary?: boolean;
-	/** The first sign-in with a temporary password already landed on "My access". */
-	welcomed?: boolean;
 	/** The person answered "Not now" to the passkey offer: never shown again. */
 	passkeyOfferDismissed?: boolean;
 }

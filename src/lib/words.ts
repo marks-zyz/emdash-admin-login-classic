@@ -11,7 +11,7 @@ function randomBelow(max: number): number {
 /**
  * Four words from the locale's list plus a two-digit number, e.g. "anchor-honey-puzzle-river-73".
  * About 2^39 combinations: online guessing is capped by the sign-in limits and offline attacks
- * by the Worker secret pepper; the person is also invited to replace it on the first sign-in.
+ * by the Worker secret pepper; the person is also invited to replace it on "My access".
  */
 export function generatePassword(words: readonly string[]): string {
 	const picked = Array.from({ length: 4 }, () => words[randomBelow(words.length)]!);

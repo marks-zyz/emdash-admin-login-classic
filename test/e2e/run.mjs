@@ -281,8 +281,8 @@ if (flowOk)
   });
 
 // F8: an administrator creates an access with a temporary password. The person signs in and
-// lands on "My access" with the suggestion and the one-time passkey offer; the second sign-in
-// goes to the home screen.
+// lands on the dashboard; "My access" shows the suggestion and the one-time passkey offer; the
+// second sign-in also goes to the home screen.
 await step("F8", async () => {
   const admin = await newCtx();
   await admin.page.goto(verifyUrl(mkToken("recovery", DEV), `${PLUGIN}team`));
@@ -307,11 +307,13 @@ await step("F8", async () => {
 
   const first = await newCtx();
   await loginForm(first.page, email, temp, "F8");
-  await first.page.waitForURL((u) => u.pathname.startsWith(PLUGIN.replace(/\/$/, "")) && u.search.includes("first=1"), { timeout: 20000 });
+  await first.page.waitForURL((u) => u.pathname.replace(/\/$/, "") === "/_emdash/admin", { timeout: 20000 });
+  await shot(first.page, "F8-first-sign-in-dashboard");
+  await first.page.goto(PLUGIN);
   await dismissCoreWelcome(first.page);
   await first.page.getByText(t.tempSuggestion).waitFor({ timeout: 15000 });
   await first.page.getByText(t.passkeyOfferTitle).waitFor({ timeout: 10000 });
-  await shot(first.page, "F8-first-sign-in");
+  await shot(first.page, "F8-my-access");
 
   const dismissed = api(first.page, "me", "PATCH");
   await first.page.getByRole("button", { name: t.passkeyOfferNo, exact: true }).click();
@@ -339,7 +341,7 @@ await step("F8", async () => {
 
   const status = await first.page.evaluate(async (base) => (await fetch(`${base}/admin`, { credentials: "same-origin" })).status, BASE_PATH);
   if (status !== 403) throw new Error(`an Editor reached the admin route: ${status}`);
-  rec("F8", true, "access created; first sign-in lands on My access with the suggestion and the passkey offer; Not now sticks; second sign-in goes home; changing the password clears the notice; an Editor gets 403 on the admin route");
+  rec("F8", true, "access created; first sign-in lands on the dashboard; My access shows the suggestion and the passkey offer; Not now sticks; second sign-in goes home; changing the password clears the notice; an Editor gets 403 on the admin route");
 });
 
 removePeople();

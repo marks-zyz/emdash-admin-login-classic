@@ -118,7 +118,7 @@ export function LoginForm() {
 		setError(null);
 		const result = await post("login", { email: email.trim(), password });
 		if (result.ok) {
-			// A temporary password lands on "My access" (the server says where); otherwise the usual target.
+			// The server may name a target; otherwise the usual one.
 			const target = typeof result.data?.redirect === "string" ? result.data.redirect : new URLSearchParams(window.location.search).get("redirect");
 			window.location.href = safeRedirect(target);
 			return;

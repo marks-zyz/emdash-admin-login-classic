@@ -1,6 +1,6 @@
 {
   "name": "emdash-admin-login-classic",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Classic email and password sign-in for the EmDash admin, the way WordPress does it. Passkeys and the email link keep working next to it. No public sign-up.",
   "type": "module",
   "exports": {

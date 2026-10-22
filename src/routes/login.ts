@@ -5,7 +5,7 @@
  */
 import type { APIRoute } from "astro";
 import { apiError, apiSuccess } from "emdash/api/route-utils";
-import { LIMITS, PASSWORD_MAX, PASSWORD_PAGE_PATH } from "../lib/config.js";
+import { LIMITS, PASSWORD_MAX } from "../lib/config.js";
 import { hashPassword, needsRehash, sha256Hex, verifyDummy, verifyPassword } from "../lib/hash.js";
 import { clear, clientIp, hit, rateKey } from "../lib/rate-limit.js";
 import { normalizeEmail, readSecret, stores, users, type EmdashLocals } from "../lib/runtime.js";
@@ -67,21 +67,14 @@ export const POST: APIRoute = async ({ request, locals, session }) => {
 	if (user.disabled) return apiError("ACCOUNT_DISABLED", "This account is disabled", 403);
 	for (const { key } of keys) await clear(db, key);
 
-	// A password made by an administrator greets the person once: only the first sign-in with it
-	// lands on "My access". The mark is written here, so closing that page never brings it back.
-	const firstTemporary = !!credential?.temporary && !credential.welcomed;
-	if (credential && (needsRehash(credential.hash) || firstTemporary)) {
-		await credentials.put(user.id, {
-			...credential,
-			hash: needsRehash(credential.hash) ? await hashPassword(password, secret) : credential.hash,
-			...(firstTemporary ? { welcomed: true } : {}),
-		});
+	if (credential && needsRehash(credential.hash)) {
+		await credentials.put(user.id, { ...credential, hash: await hashPassword(password, secret) });
 	}
 
 	// New session id before marking it as signed in, so a planted cookie cannot be promoted.
 	await session.regenerate();
 	session.set("user", { id: user.id });
-	// First sign-in with a temporary password: "My access", which suggests a personal password and
-	// offers a passkey once. A suggestion, never a block; every later sign-in goes to the home screen.
-	return apiSuccess(firstTemporary ? { success: true, redirect: `${PASSWORD_PAGE_PATH}?first=1` } : { success: true });
+	// Every sign-in, the first included, goes to the usual target (the dashboard). A temporary password
+	// is only suggested for replacement on "My access", never by a redirect.
+	return apiSuccess({ success: true });
 };
