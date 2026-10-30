@@ -143,6 +143,8 @@ flowOk =
     await shot(page, "F1-confirm");
     await confirm.click();
     await page.waitForURL((u) => u.pathname.replace(/\/$/, "") === PLUGIN.replace(/\/$/, ""), { timeout: 15000 });
+    // On a fresh database the dev user has not seen EmDash's modal welcome yet, and it hides the page.
+    await dismissCoreWelcome(page);
     await page.getByRole("heading", { name: t.pageTitle }).waitFor({ timeout: 10000 });
     await page.getByText(t.fromReset).waitFor({ timeout: 8000 });
     rec("F1", true, "confirm screen, then My access with the reset notice");
@@ -289,6 +291,7 @@ await step("F8", async () => {
   const confirm = admin.page.getByRole("button", { name: CORE.confirm }).first();
   await confirm.waitFor({ timeout: 30000 });
   await confirm.click();
+  await dismissCoreWelcome(admin.page);
   await admin.page.getByRole("heading", { name: t.accessTitle, exact: true }).waitFor({ timeout: 30000 });
   const email = `e2e-team-${randomBytes(3).toString("hex")}@example.com`;
   await admin.page.getByLabel(exact(t.email)).fill(email);
@@ -309,7 +312,7 @@ await step("F8", async () => {
   await loginForm(first.page, email, temp, "F8");
   await first.page.waitForURL((u) => u.pathname.replace(/\/$/, "") === "/_emdash/admin", { timeout: 20000 });
   await shot(first.page, "F8-first-sign-in-dashboard");
-  await first.page.goto(PLUGIN);
+  await first.page.goto(`${BASE}${PLUGIN}`);
   await dismissCoreWelcome(first.page);
   await first.page.getByText(t.tempSuggestion).waitFor({ timeout: 15000 });
   await first.page.getByText(t.passkeyOfferTitle).waitFor({ timeout: 10000 });

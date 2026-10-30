@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.1
+
+- Accepts EmDash 1.4.0: the peer ranges of `emdash` and `@emdash-cms/auth` are now `>=1.1.0 <1.5.0`.
+- The admin entry exports `loginHelp`, the line EmDash 1.3.1 and later show under the password form. Without it the core printed "Continue with {label}.", which has no translation, so a Portuguese panel read "Continue with e-mail e senha."; it now reads "Digite seu e-mail e sua senha para entrar." (or the English line). Older EmDash versions ignore the export.
+- End-to-end runner: flows F1 and F8 close EmDash's first-login welcome dialog before looking for the page title (on a fresh database the modal hides the page from the accessibility tree), and F8 opens "My access" with the full URL. F8 now runs green.
+- Unit tests (32) and the type check pass against `emdash` and `@emdash-cms/auth` 1.4.0, and the end-to-end flows ran on a fresh 1.4.0 site in Chromium and WebKit: every flow passes but forgot-password, which needs an email provider (the test site had none, as on 1.3.0).
+
 ## 0.6.0
 
 - Every sign-in, the first one with a temporary password included, lands on the dashboard (or the `redirect` the login page was given). The one-time redirect to "My access" (`?first=1`) is gone; the suggestion to replace a temporary password and the one-time passkey offer stay on "My access". A `welcomed` key stored by 0.5.x is ignored.

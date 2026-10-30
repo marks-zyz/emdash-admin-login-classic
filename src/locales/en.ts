@@ -3,6 +3,7 @@ export const en = {
 	// Sign-in page (inside EmDash's LoginPage)
 	signInWithPassword: "Sign in with email and password",
 	providerLabel: "email and password",
+	loginHelp: "Enter your email and password to sign in.",
 	email: "Email",
 	password: "Password",
 	signIn: "Sign in",

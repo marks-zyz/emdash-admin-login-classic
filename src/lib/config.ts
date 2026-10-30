@@ -7,7 +7,7 @@ import type { Locale } from "./i18n.js";
 export const SLUG = "admin-login-classic";
 export const PROVIDER_ID = SLUG;
 export const PLUGIN_ID = SLUG;
-export const VERSION = "0.6.0";
+export const VERSION = "0.6.1";
 
 export const BASE_PATH = `/_emdash/api/auth/${SLUG}`;
 export const ADMIN_PATH = "/_emdash/admin";

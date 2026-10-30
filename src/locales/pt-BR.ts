@@ -3,6 +3,7 @@ import type { Strings } from "./en.js";
 export const ptBR: Strings = {
 	signInWithPassword: "Entre com e-mail e senha",
 	providerLabel: "e-mail e senha",
+	loginHelp: "Digite seu e-mail e sua senha para entrar.",
 	email: "E-mail",
 	password: "Senha",
 	signIn: "Entrar",

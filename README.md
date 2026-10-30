@@ -111,6 +111,8 @@ We would rather this stayed small and, one day, unnecessary. Most of what the pa
 | 0.5.0 | `>=1.1.0 <1.2.0` | Astro 7, Cloudflare Workers, Chromium and WebKit |
 | 0.5.1 | `>=1.1.0 <1.3.0` | Astro 7, Cloudflare Workers; end-to-end on 1.1.0 (Chromium and WebKit), unit tests and type check on 1.2.0 |
 | 0.5.2 | `>=1.1.0 <1.4.0` | Astro 7, Cloudflare Workers; end-to-end on 1.3.0 (Chromium and WebKit, every flow but forgot-password, which needs an email provider), unit tests and type check on 1.3.0 |
+| 0.6.0 | `>=1.1.0 <1.4.0` | Astro 7, Cloudflare Workers; unit tests and type check on 1.3.0 (flow F8 not run green) |
+| 0.6.1 | `>=1.1.0 <1.5.0` | Astro 7, Cloudflare Workers; end-to-end on a fresh 1.4.0 site (Chromium and WebKit, every flow but forgot-password, which needs an email provider), unit tests and type check on 1.4.0 |
 
 ## Testing
 

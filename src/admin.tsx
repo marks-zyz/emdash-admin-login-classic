@@ -104,6 +104,15 @@ export function LoginButton({ inviteToken }: { inviteToken?: string }) {
 	);
 }
 
+/**
+ * Line EmDash 1.3.1+ shows under `LoginForm` on the sign-in page (`loginHelp` of the provider's
+ * admin entry); without it the core prints "Continue with {label}.", untranslated. Older versions
+ * ignore the export.
+ */
+export function loginHelp() {
+	return <>{strings(clientLocale()).loginHelp}</>;
+}
+
 export function LoginForm() {
 	const t = strings(clientLocale());
 	const [view, setView] = React.useState<"login" | "forgot" | "sent">("login");
