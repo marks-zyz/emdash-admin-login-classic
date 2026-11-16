@@ -200,7 +200,7 @@ const f5ok = await step("F5", async () => {
   const p = invited.page;
   await p.goto(`${BASE}/_emdash/admin/invite/accept?token=${encodeURIComponent(mkToken("invite", inviteEmail))}`);
   const accept = p.getByRole("button", { name: t.acceptWithPassword, exact: true });
-  await accept.waitFor({ timeout: 10000 });
+  await accept.waitFor({ timeout: 30000 }); // a cold dev server compiles the invite page on first load
   await shot(p, "F5-invite");
   const response = api(p, "invite", "POST");
   await accept.click();

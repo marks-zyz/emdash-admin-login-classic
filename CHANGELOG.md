@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.2
+
+- Accepts EmDash 1.5.0: the peer ranges of `emdash` and `@emdash-cms/auth` are now `>=1.1.0 <1.6.0`. No code change in `src` beyond `VERSION`. `@emdash-cms/auth` 1.5.0 is byte-for-byte the 1.4.0 package apart from the version, and the core changes around sign-in (trailing slashes on public routes, invite creation no longer public, 503 instead of 401 when an external-auth user lookup fails, `POST /auth/me` gaining `setAdminLayout`) do not touch the routes or the `me` contract this package uses. Admin 1.5.0 still reads `loginHelp` from the provider's admin entry and still ships "Continue with {0}." untranslated in pt-BR, so the export stays.
+- EmDash 1.5.0 answers 409 `SETUP_REQUIRED` from the dev bypass until the setup wizard is done; the end-to-end site must finish setup (the kit's `cms:bootstrap` does) before `dev@emdash.local` exists. End-to-end runner: the wait for the invite page is 30 s, as for the first load of the admin, because a cold dev server compiles it on first use.
+- Unit tests (32) and the type check pass against `emdash` and `@emdash-cms/auth` 1.5.0 and `@cloudflare/kumo` 2.15.0 (the version admin 1.5.0 depends on; 1.4.0 had 2.6.0). The end-to-end flows ran on a fresh 1.5.0 site with Kumo 2.15.0 in Chromium and WebKit and every flow passes, forgot-password included (it answers 200 and the confirmation text; actual delivery needs an email provider).
+
 ## 0.6.1
 
 - Accepts EmDash 1.4.0: the peer ranges of `emdash` and `@emdash-cms/auth` are now `>=1.1.0 <1.5.0`.

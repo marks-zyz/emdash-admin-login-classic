@@ -56,7 +56,7 @@ SITE=/path/to/site D1=/path/to/local.sqlite LOCALE=en bun run.mjs chromium
 | `LOCALE` | the `locale` the site passes to the package, default `en`; texts are read from `src/locales` |
 | `ONLY` | comma list of flows, for example `F3,F8`; each flow brings the ones it builds on |
 
-The site needs the `dev@emdash.local` user that EmDash creates for its dev bypass. Run it before a release and whenever sign-in, reset, invite or Team access changes. A form tested only with curl once passed and then failed for the first real person, so this test exists.
+The site needs the `dev@emdash.local` user that EmDash creates for its dev bypass (EmDash 1.5.0 and later answer 409 `SETUP_REQUIRED` there until the setup wizard is done, so finish setup first). Run it before a release and whenever sign-in, reset, invite or Team access changes. A form tested only with curl once passed and then failed for the first real person, so this test exists.
 
 ## Adding a language
 
